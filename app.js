@@ -1,6 +1,9 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 const ejs = require('ejs');
+const date = require(__dirname + '/date.js');
+
+
 
 const app = express();
 var items = ["Buy Food", "Cook Food", "Eat Food"];
@@ -13,9 +16,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 app.get("/", function(req, res){
-   var today = new Date();
+   
+   let day = date.getDay();
 
-   res.render("list", {kinfOfDay: today, newListItem: items});
+   res.render("list", {kinfOfDay: day, newListItem: items});
    
 
 
